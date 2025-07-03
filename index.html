@@ -1,10 +1,25 @@
-<form id="voucherForm">
-  <label for="cardNumber">Card Number:</label>
-  <input type="text" id="cardNumber" required />
-  <button type="submit">Tampilkan Voucher</button>
-</form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Voucher Viewer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Lihat Gambar Voucher</h2>
+    <form id="voucherForm">
+      <label for="cardNumber">Nomor Kartu:</label>
+      <input type="text" id="cardNumber" placeholder="Masukkan nomor kartu" required>
+      <button type="submit">Lihat Voucher</button>
+    </form>
 
-<div id="voucherResult" class="hidden">
-  <h3>Voucher:</h3>
-  <img id="voucherImage" style="max-width: 100%; border: 1px solid #ccc;" />
-</div>
+    <div id="voucherResult" class="hidden">
+      <h3>Voucher Anda:</h3>
+      <img id="voucherImage" src="" alt="Voucher akan muncul di sini">
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
