@@ -1,13 +1,14 @@
 document.addEventListener('DOMContentLoaded', function () {
   const form = document.getElementById('voucherForm');
-  const voucherResult = document.getElementById('voucherResult');
+  const resultDiv = document.getElementById('voucherResult');
   const voucherImage = document.getElementById('voucherImage');
 
   form.addEventListener('submit', function (event) {
     event.preventDefault();
     const cardNumber = document.getElementById('cardNumber').value.trim();
+    if (!cardNumber) return;
 
-    const tz = 'MIDFR9QKSL'; // Ganti jika perlu
+    const tz = 'MIDFR9QKSL'; // Ganti sesuai timezone ID dari API
     const imageUrl = `https://api.teeg.cloud/vouchers/campaigns/cards/${cardNumber}/voucher/${tz}/img`;
 
     fetch(imageUrl, {
@@ -18,20 +19,18 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     })
     .then(response => {
-      if (!response.ok) {
-        throw new Error(`Gagal memuat gambar voucher. Status: ${response.status}`);
-      }
+      if (!response.ok) throw new Error('Voucher tidak ditemukan');
       return response.blob();
     })
     .then(blob => {
-      const imageUrl = URL.createObjectURL(blob);
-      voucherImage.src = imageUrl;
-      voucherImage.alt = "Voucher Image";
-      voucherResult.classList.remove('hidden');
+      const imageObjectUrl = URL.createObjectURL(blob);
+      voucherImage.src = imageObjectUrl;
+      voucherImage.alt = "Voucher berhasil dimuat";
+      resultDiv.classList.remove('hidden');
     })
     .catch(error => {
-      console.error('Error fetching image:', error);
-      alert('Voucher tidak ditemukan atau gagal dimuat.');
+      console.error('Gagal ambil gambar voucher:', error);
+      alert('Voucher tidak ditemukan atau gagal diambil. Pastikan nomor kartu dan kode tz benar.');
     });
   });
 });
