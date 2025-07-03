@@ -2,21 +2,21 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Voucher Viewer</title>
+  <title>Voucher Generator</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="container">
-    <h2>Lihat Gambar Voucher</h2>
+    <h2>Generate Voucher dari Nomor Kartu</h2>
     <form id="voucherForm">
       <label for="cardNumber">Nomor Kartu:</label>
       <input type="text" id="cardNumber" placeholder="Masukkan nomor kartu" required>
-      <button type="submit">Lihat Voucher</button>
+      <button type="submit">Ambil Voucher</button>
     </form>
 
     <div id="voucherResult" class="hidden">
       <h3>Voucher Anda:</h3>
-      <img id="voucherImage" src="" alt="Voucher akan muncul di sini">
+      <pre id="voucherCode">Loading...</pre>
     </div>
   </div>
 
